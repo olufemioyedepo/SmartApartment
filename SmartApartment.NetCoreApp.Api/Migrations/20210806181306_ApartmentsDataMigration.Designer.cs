@@ -9,8 +9,8 @@ using SmartApartment.Persistence;
 namespace SmartApartment.NetCoreApp.Api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210804124002_ApartmentInfoMigration")]
-    partial class ApartmentInfoMigration
+    [Migration("20210806181306_ApartmentsDataMigration")]
+    partial class ApartmentsDataMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,6 +32,9 @@ namespace SmartApartment.NetCoreApp.Api.Migrations
                     b.Property<int>("ApartmentTypeId")
                         .HasColumnType("int");
 
+                    b.Property<int>("CityId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime(6)");
 
@@ -42,11 +45,42 @@ namespace SmartApartment.NetCoreApp.Api.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int>("StateId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ApartmentTypeId");
 
+                    b.HasIndex("CityId");
+
+                    b.HasIndex("StateId");
+
                     b.ToTable("Apartments");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Address = "22, Deena Kelly Avenue, Austin, Texas",
+                            ApartmentTypeId = 1,
+                            CityId = 52,
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(2818),
+                            Description = "Duplex with 3 bedrooms",
+                            Name = "A well-furnished Duplex with 3 bedrooms",
+                            StateId = 12
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Address = "10, Foster Way, Chorley, Georgia",
+                            ApartmentTypeId = 2,
+                            CityId = 35,
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(5797),
+                            Description = "Triplex with 5 bedrooms",
+                            Name = "A well-furnished Triplex with 5 bedrooms",
+                            StateId = 8
+                        });
                 });
 
             modelBuilder.Entity("SmartApartment.Domain.Entities.ApartmentType", b =>
@@ -69,67 +103,67 @@ namespace SmartApartment.NetCoreApp.Api.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(2029),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(1484),
                             Name = "Duplex"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(3016),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(2052),
                             Name = "Triplex"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(3064),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(2075),
                             Name = "Quadruplex"
                         },
                         new
                         {
                             Id = 4,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(3067),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(2078),
                             Name = "Loft"
                         },
                         new
                         {
                             Id = 5,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(3070),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(2080),
                             Name = "Micro Apartment"
                         },
                         new
                         {
                             Id = 6,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(3078),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(2141),
                             Name = "Studio"
                         },
                         new
                         {
                             Id = 7,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(3081),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(2144),
                             Name = "High-rise"
                         },
                         new
                         {
                             Id = 8,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(3083),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(2146),
                             Name = "Mid-rise"
                         },
                         new
                         {
                             Id = 9,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(3086),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(2148),
                             Name = "Walk-up"
                         },
                         new
                         {
                             Id = 10,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(3091),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(2152),
                             Name = "Condo"
                         },
                         new
                         {
                             Id = 11,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(3094),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(2154),
                             Name = "Townhouse"
                         });
                 });
@@ -158,469 +192,469 @@ namespace SmartApartment.NetCoreApp.Api.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 776, DateTimeKind.Local).AddTicks(9251),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 538, DateTimeKind.Local).AddTicks(9652),
                             Name = "Birmingham",
                             StateId = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(982),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(781),
                             Name = "Hunstville",
                             StateId = 1
                         },
                         new
                         {
                             Id = 3,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1052),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(814),
                             Name = "Mobile",
                             StateId = 1
                         },
                         new
                         {
                             Id = 4,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1056),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(817),
                             Name = "Montgomery",
                             StateId = 1
                         },
                         new
                         {
                             Id = 5,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1060),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(818),
                             Name = "Flagstaff",
                             StateId = 2
                         },
                         new
                         {
                             Id = 6,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1070),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(824),
                             Name = "Phoenix",
                             StateId = 2
                         },
                         new
                         {
                             Id = 7,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1074),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(826),
                             Name = "Tucson",
                             StateId = 2
                         },
                         new
                         {
                             Id = 8,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1077),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(828),
                             Name = "Central Coast",
                             StateId = 3
                         },
                         new
                         {
                             Id = 9,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1080),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(831),
                             Name = "San Joaquin Valley",
                             StateId = 3
                         },
                         new
                         {
                             Id = 10,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1086),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(834),
                             Name = "Inland Empire",
                             StateId = 3
                         },
                         new
                         {
                             Id = 11,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1089),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(836),
                             Name = "Los Angeles",
                             StateId = 3
                         },
                         new
                         {
                             Id = 12,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1092),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(838),
                             Name = "San Francisco",
                             StateId = 3
                         },
                         new
                         {
                             Id = 13,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1095),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(841),
                             Name = "Orange County",
                             StateId = 3
                         },
                         new
                         {
                             Id = 14,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1098),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(842),
                             Name = "Sacramento",
                             StateId = 3
                         },
                         new
                         {
                             Id = 15,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1103),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(844),
                             Name = "San Diego",
                             StateId = 3
                         },
                         new
                         {
                             Id = 16,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1106),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(847),
                             Name = "Bay Area/San Francisco",
                             StateId = 3
                         },
                         new
                         {
                             Id = 17,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1109),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(849),
                             Name = "Denver",
                             StateId = 4
                         },
                         new
                         {
                             Id = 18,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1116),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(853),
                             Name = "Colorado Springs",
                             StateId = 4
                         },
                         new
                         {
                             Id = 19,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1120),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(856),
                             Name = "Fairfield County",
                             StateId = 5
                         },
                         new
                         {
                             Id = 20,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1123),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(858),
                             Name = "Hartford",
                             StateId = 5
                         },
                         new
                         {
                             Id = 21,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1126),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(861),
                             Name = "Middlesex County",
                             StateId = 5
                         },
                         new
                         {
                             Id = 22,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1129),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(863),
                             Name = "New Haven County",
                             StateId = 5
                         },
                         new
                         {
                             Id = 23,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1133),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(865),
                             Name = "Tolland County",
                             StateId = 5
                         },
                         new
                         {
                             Id = 24,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1135),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(867),
                             Name = "Washington D.C.",
                             StateId = 6
                         },
                         new
                         {
                             Id = 25,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1138),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(868),
                             Name = "Southwest Florida",
                             StateId = 7
                         },
                         new
                         {
                             Id = 26,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1141),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(871),
                             Name = "Northwest Florida",
                             StateId = 7
                         },
                         new
                         {
                             Id = 27,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1144),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(873),
                             Name = "Melbourne & Palm Bay",
                             StateId = 7
                         },
                         new
                         {
                             Id = 28,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1147),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(874),
                             Name = "Palm Beach & Boca",
                             StateId = 7
                         },
                         new
                         {
                             Id = 29,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1150),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(876),
                             Name = "Jacksonville",
                             StateId = 7
                         },
                         new
                         {
                             Id = 30,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1153),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(878),
                             Name = "Gainesville",
                             StateId = 7
                         },
                         new
                         {
                             Id = 31,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1156),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(880),
                             Name = "Miami/Ft. Lauderdale",
                             StateId = 7
                         },
                         new
                         {
                             Id = 32,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1159),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(881),
                             Name = "Tampa",
                             StateId = 7
                         },
                         new
                         {
                             Id = 33,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1162),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(883),
                             Name = "Orlando",
                             StateId = 7
                         },
                         new
                         {
                             Id = 34,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1168),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(886),
                             Name = "Albany",
                             StateId = 8
                         },
                         new
                         {
                             Id = 35,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1171),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(888),
                             Name = "Atlanta",
                             StateId = 8
                         },
                         new
                         {
                             Id = 36,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1174),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(890),
                             Name = "Macon",
                             StateId = 8
                         },
                         new
                         {
                             Id = 37,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1176),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(891),
                             Name = "Augusta",
                             StateId = 8
                         },
                         new
                         {
                             Id = 38,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1179),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(893),
                             Name = "Savannah",
                             StateId = 8
                         },
                         new
                         {
                             Id = 39,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1182),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(896),
                             Name = "Chicago",
                             StateId = 9
                         },
                         new
                         {
                             Id = 40,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1185),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(897),
                             Name = "Moline",
                             StateId = 9
                         },
                         new
                         {
                             Id = 41,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1188),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(899),
                             Name = "Springfield",
                             StateId = 9
                         },
                         new
                         {
                             Id = 42,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1190),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(901),
                             Name = "Evansville",
                             StateId = 10
                         },
                         new
                         {
                             Id = 43,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1193),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(902),
                             Name = "Fort Wayne",
                             StateId = 10
                         },
                         new
                         {
                             Id = 44,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1196),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(904),
                             Name = "Indianapolis",
                             StateId = 10
                         },
                         new
                         {
                             Id = 45,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1199),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(906),
                             Name = "South Bend/Mishawaka",
                             StateId = 10
                         },
                         new
                         {
                             Id = 46,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1203),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(907),
                             Name = "Davenport",
                             StateId = 11
                         },
                         new
                         {
                             Id = 47,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1206),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(909),
                             Name = "Des Moines",
                             StateId = 11
                         },
                         new
                         {
                             Id = 48,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1208),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(911),
                             Name = "Sioux City",
                             StateId = 11
                         },
                         new
                         {
                             Id = 49,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1211),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(913),
                             Name = "DFW",
                             StateId = 12
                         },
                         new
                         {
                             Id = 50,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1214),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(914),
                             Name = "Tyler",
                             StateId = 12
                         },
                         new
                         {
                             Id = 51,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1217),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(916),
                             Name = "Longview",
                             StateId = 12
                         },
                         new
                         {
                             Id = 52,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1219),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(918),
                             Name = "Houston",
                             StateId = 12
                         },
                         new
                         {
                             Id = 53,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1222),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(920),
                             Name = "Victoria",
                             StateId = 12
                         },
                         new
                         {
                             Id = 54,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1225),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(921),
                             Name = "Corpus Christi",
                             StateId = 12
                         },
                         new
                         {
                             Id = 55,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1228),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(923),
                             Name = "Golden Triangle",
                             StateId = 12
                         },
                         new
                         {
                             Id = 56,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1231),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(925),
                             Name = "Lufkin",
                             StateId = 12
                         },
                         new
                         {
                             Id = 57,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1233),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(926),
                             Name = "Austin",
                             StateId = 12
                         },
                         new
                         {
                             Id = 58,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1236),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(928),
                             Name = "San Antonio",
                             StateId = 12
                         },
                         new
                         {
                             Id = 59,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1239),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(930),
                             Name = "I-35 Corridor",
                             StateId = 12
                         },
                         new
                         {
                             Id = 60,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1242),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(931),
                             Name = "College Station",
                             StateId = 12
                         },
                         new
                         {
                             Id = 61,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1245),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(933),
                             Name = "Abilene",
                             StateId = 12
                         },
                         new
                         {
                             Id = 62,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1251),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(935),
                             Name = "Amarillo",
                             StateId = 12
                         },
                         new
                         {
                             Id = 63,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1253),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(937),
                             Name = "Midland/Odessa",
                             StateId = 12
                         },
                         new
                         {
                             Id = 64,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1255),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(938),
                             Name = "Lubbock",
                             StateId = 12
                         },
                         new
                         {
                             Id = 65,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1258),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(940),
                             Name = "Laredo",
                             StateId = 12
                         },
                         new
                         {
                             Id = 66,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1263),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(943),
                             Name = "Harlingen",
                             StateId = 12
                         },
                         new
                         {
                             Id = 67,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 777, DateTimeKind.Local).AddTicks(1265),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 539, DateTimeKind.Local).AddTicks(945),
                             Name = "Wichita Falls",
                             StateId = 12
                         });
@@ -673,73 +707,73 @@ namespace SmartApartment.NetCoreApp.Api.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 772, DateTimeKind.Local).AddTicks(7719),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 536, DateTimeKind.Local).AddTicks(2723),
                             Name = "Alabama"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 776, DateTimeKind.Local).AddTicks(8274),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 538, DateTimeKind.Local).AddTicks(8948),
                             Name = "Arizona"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 776, DateTimeKind.Local).AddTicks(8336),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 538, DateTimeKind.Local).AddTicks(9011),
                             Name = "California"
                         },
                         new
                         {
                             Id = 4,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 776, DateTimeKind.Local).AddTicks(8340),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 538, DateTimeKind.Local).AddTicks(9015),
                             Name = "Colorado"
                         },
                         new
                         {
                             Id = 5,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 776, DateTimeKind.Local).AddTicks(8402),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 538, DateTimeKind.Local).AddTicks(9017),
                             Name = "Connecticut"
                         },
                         new
                         {
                             Id = 6,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 776, DateTimeKind.Local).AddTicks(8412),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 538, DateTimeKind.Local).AddTicks(9024),
                             Name = "District of Columbia"
                         },
                         new
                         {
                             Id = 7,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 776, DateTimeKind.Local).AddTicks(8414),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 538, DateTimeKind.Local).AddTicks(9026),
                             Name = "Florida"
                         },
                         new
                         {
                             Id = 8,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 776, DateTimeKind.Local).AddTicks(8416),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 538, DateTimeKind.Local).AddTicks(9028),
                             Name = "Georgia"
                         },
                         new
                         {
                             Id = 9,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 776, DateTimeKind.Local).AddTicks(8418),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 538, DateTimeKind.Local).AddTicks(9030),
                             Name = "Illiois"
                         },
                         new
                         {
                             Id = 10,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 776, DateTimeKind.Local).AddTicks(8422),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 538, DateTimeKind.Local).AddTicks(9033),
                             Name = "Indiana"
                         },
                         new
                         {
                             Id = 11,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 776, DateTimeKind.Local).AddTicks(8424),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 538, DateTimeKind.Local).AddTicks(9035),
                             Name = "Iowa"
                         },
                         new
                         {
                             Id = 12,
-                            CreatedOn = new DateTime(2021, 8, 4, 13, 40, 1, 776, DateTimeKind.Local).AddTicks(8426),
+                            CreatedOn = new DateTime(2021, 8, 6, 19, 13, 5, 538, DateTimeKind.Local).AddTicks(9037),
                             Name = "Texas"
                         });
                 });
@@ -752,7 +786,23 @@ namespace SmartApartment.NetCoreApp.Api.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("SmartApartment.Domain.Entities.City", "City")
+                        .WithMany()
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SmartApartment.Domain.Entities.State", "State")
+                        .WithMany()
+                        .HasForeignKey("StateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("ApartmentType");
+
+                    b.Navigation("City");
+
+                    b.Navigation("State");
                 });
 
             modelBuilder.Entity("SmartApartment.Domain.Entities.ApartmentType", b =>

@@ -10,12 +10,13 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Linq;
 
-namespace SmartApartment.Application.CQRS.ApartmentFeature
+namespace SmartApartment.Application.CQRS.ApartmentFeature.Queries
 {
-    public class ApartmentsQuery : IRequest<GenericResponse<List<Apartment>>>
+    public class ApartmentsQuery : IRequest<GenericResponse<List<ApartmentInfoDto>>>
     {
-        public class GetApartmentsQueryHandler : IRequestHandler<ApartmentsQuery, GenericResponse<List<Apartment>>>
+        public class GetApartmentsQueryHandler : IRequestHandler<ApartmentsQuery, GenericResponse<List<ApartmentInfoDto>>>
         {
             private readonly IAppDbContext _context;
             private readonly IMapper _mapper;
@@ -25,13 +26,28 @@ namespace SmartApartment.Application.CQRS.ApartmentFeature
                 _mapper = mapper;
             }
 
-            public async Task<GenericResponse<List<Apartment>>> Handle(ApartmentsQuery query, CancellationToken cancellationToken)
+            public async Task<GenericResponse<List<ApartmentInfoDto>>> Handle(ApartmentsQuery query, CancellationToken cancellationToken)
             {
                 try
                 {
-                    var apartments = await _context.Apartments.ToListAsync();
-                    
-                    return new GenericResponse<List<Apartment>>()
+                    var apartments = await (from apartment in _context.Apartments
+                                join apartmentType in _context.ApartmentTypes on apartment.ApartmentTypeId equals apartmentType.Id
+                                join state in _context.States on apartment.StateId equals state.Id
+                                join city in _context.Cities on apartment.CityId equals city.Id
+                                where apartment.Id > 0
+                                select new ApartmentInfoDto
+                                {
+                                    Id = apartment.Id,
+                                    Name = apartment.Name,
+                                    ApartmentType = apartmentType.Name,
+                                    Address = apartment.Address,
+                                    Description = !string.IsNullOrEmpty(apartment.Description) ? apartment.Description : "N/A",
+                                    State = state.Name,
+                                    City = city.Name,
+                                }).ToListAsync();
+
+                                
+                    return new GenericResponse<List<ApartmentInfoDto>>()
                     {
                         Code = 200,
                         Data = apartments,
@@ -42,7 +58,7 @@ namespace SmartApartment.Application.CQRS.ApartmentFeature
                 catch (Exception ex)
                 {
                     Log.Error(Utility.ErrorLog(ex));
-                    return new GenericResponse<List<Apartment>>()
+                    return new GenericResponse<List<ApartmentInfoDto>>()
                     {
                         Code = 500,
                         Data = null,

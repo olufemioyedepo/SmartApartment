@@ -28,7 +28,7 @@ namespace SmartApartment.Persistence
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            this.InitializeSeedData(modelBuilder);
+            InitializeSeedData(modelBuilder);
         }
 
         private void InitializeSeedData(ModelBuilder builder)
@@ -36,6 +36,7 @@ namespace SmartApartment.Persistence
             var states = new List<State>();
             var cities = new List<City>();
             var apartmentTypes = new List<ApartmentType>();
+            var apartments = new List<Apartment>();
 
             states.Add(new State() { Id = 1, Name = "Alabama" });
             states.Add(new State() { Id = 2, Name = "Arizona" });
@@ -141,9 +142,13 @@ namespace SmartApartment.Persistence
             apartmentTypes.Add(new ApartmentType() { Id = 10, Name = "Condo" });
             apartmentTypes.Add(new ApartmentType() { Id = 11, Name = "Townhouse" });
 
+            apartments.Add(new Apartment() { Id = 1, ApartmentTypeId = 1, StateId = 12, CityId = 52, Address = "22, Deena Kelly Avenue, Austin, Texas", Description = "Duplex with 3 bedrooms", Name = "A well-furnished Duplex with 3 bedrooms" });
+            apartments.Add(new Apartment() { Id = 2, ApartmentTypeId = 2, StateId = 8, CityId = 35, Address = "10, Foster Way, Chorley, Georgia", Description = "Triplex with 5 bedrooms", Name = "A well-furnished Triplex with 5 bedrooms" });
+
             builder.Entity<State>().HasData(states);
             builder.Entity<City>().HasData(cities);
             builder.Entity<ApartmentType>().HasData(apartmentTypes);
+            builder.Entity<Apartment>().HasData(apartments);
         }
     }
 }

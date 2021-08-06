@@ -15,6 +15,14 @@ namespace SmartApartment.Application.MappingProfiles
         }
     }
 
+    public class ApartmentInfoProfile : Profile
+    {
+        public ApartmentInfoProfile()
+        {
+            CreateMap<Apartment, ApartmentDto>();
+        }
+    }
+
     public class ApartmentTypeProfile : Profile
     {
         public ApartmentTypeProfile()

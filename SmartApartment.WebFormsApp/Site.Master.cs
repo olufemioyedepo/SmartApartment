@@ -33,6 +33,7 @@ namespace SmartApartment.WebFormsApp
 
                     dynamic payload = JsonConvert.DeserializeObject(decodedPayload);
                     Session["Name"] = $"Welcome {payload.name}!";
+                    Session["LoggedIn"] = true;
                 }
             }
 
