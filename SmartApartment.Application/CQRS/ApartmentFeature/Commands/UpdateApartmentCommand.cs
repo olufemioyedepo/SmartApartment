@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Serilog;
 using SmartApartment.Application.Helpers;
 using System;
 using System.Collections.Generic;
@@ -60,7 +61,7 @@ namespace SmartApartment.Application.CQRS.ApartmentFeature.Commands
                 }
                 catch (Exception ex)
                 {
-                    Utility.ErrorLog(ex);
+                    Log.Error(Utility.ErrorLog(ex));
                 }
 
                 return new GenericResponse<UpdateApartmentCommand>()

@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Serilog;
 using SmartApartment.Application.Helpers;
 using SmartApartment.Domain.Entities;
 using System;
@@ -63,7 +64,7 @@ namespace SmartApartment.Application.CQRS.ApartmentFeature.Commands
                 }
                 catch (Exception ex)
                 {
-                    Utility.ErrorLog(ex);
+                    Log.Error(Utility.ErrorLog(ex));
 
                     return new GenericResponse<Apartment>()
                     {
